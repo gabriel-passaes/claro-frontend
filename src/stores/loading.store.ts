@@ -1,14 +1,19 @@
 'use client';
 
-import { LoadingState } from '@/components/Loading/loading.types';
+import type { LoadingProps } from '@/components/Loading/loading.types';
 import { create } from 'zustand';
 
-export const useLoadingStore = create<LoadingState>((set) => ({
+interface LoadingStore extends LoadingProps {
+  isLoading: boolean;
+  startLoading: (props: LoadingProps) => void;
+  stopLoading: () => void;
+}
+
+export const useLoadingStore = create<LoadingStore>((set) => ({
   isLoading: false,
   type: 'spin',
   size: 'medium',
   color: 'primary',
-  duration: 3000,
 
   startLoading: (props) =>
     set(() => ({
@@ -16,7 +21,6 @@ export const useLoadingStore = create<LoadingState>((set) => ({
       type: props.type ?? 'spin',
       size: props.size ?? 'medium',
       color: props.color ?? 'primary',
-      duration: props.duration ?? 3000,
     })),
 
   stopLoading: () =>
