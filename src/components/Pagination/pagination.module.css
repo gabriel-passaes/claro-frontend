@@ -1,0 +1,19 @@
+.wrapper {
+  @apply flex justify-center gap-2 mt-4;
+}
+
+.button {
+  @apply w-8 h-8 flex items-center justify-center text-sm rounded-full transition bg-transparent;
+}
+
+.button:hover:not(:disabled):not(.active) {
+  @apply bg-primary-500/40 text-light-100;
+}
+
+.button:disabled {
+  @apply opacity-40 cursor-not-allowed;
+}
+
+.active {
+  @apply bg-primary-400/80 text-light-100;
+}

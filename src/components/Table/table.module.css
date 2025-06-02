@@ -1,0 +1,7 @@
+.wrapper {
+  @apply rounded-md shadow-md overflow-hidden bg-light-100 dark:bg-dark-100;
+}
+
+.table {
+  @apply w-full text-sm border-collapse;
+}

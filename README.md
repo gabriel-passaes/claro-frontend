@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📡📺📱 Claro Frontend
 
-## Getting Started
+Projeto frontend em Next.js para visualização de login com tokens JWE.  
+Dashboard com histórico, gráfico de acessos e ferramenta de decrypt integrada.
 
-First, run the development server:
+---
+
+## 📁 Estrutura de Pastas
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+claro-frontend/
+├── .github/workflows/        # Pipeline CI com GitHub Actions
+├── public/                   # Assets públicos (logo, ícones etc.)
+├── src/
+│   ├── pages/                # Páginas principais
+│   │   ├── auth/             # Layout e rota de login
+│   │   ├── dashboard/        # Página principal do dashboard
+│   │   ├── decrypt/          # Página de decrypt JWE
+│   │   └── history/          # Página com histórico completo
+│   ├── layouts/              # Layouts da aplicação (AuthLayout etc.)
+│   ├── services/             # Serviços de API com Axios
+│   ├── stores/               # Armazenamento global com Redux Toolkit
+│   └── utils/                # Funções utilitárias e middleware
+├── .env.example              # Variáveis de ambiente de exemplo
+├── README.md                 # Documentação principal
+└── docker-compose.yml        # Arquivo Docker
+
+
+## ⚙️ Tecnologias Utilizadas
+
+- **Next.js 15**
+- **TypeScript**
+- **Redux Toolkit**
+- **PrimeReact**
+- **Axios**
+- **ESLint + Prettier**
+- **Docker + Docker Compose**
+- **GitHub Actions (CI)**
+
+---
+
+## 🧪 Testes Unitários
+
+Os testes estão na pasta `__tests__/unit/` e cobrem:
+
+- **Serviços** (`authService`, `historyService`, `decryptService`)
+- **Stores** (`auth.store`, `history.store`)
+- **Componentes de página** (`LoginPage`, `DecryptPage`, `DashboardIndex`, `HistoryPage`)
+
+### Execute com:
+
+```bash
+pnpm run test
+
+## 🐳 Docker
+
+### Build e Run
+
+```bash
+docker-compose build
+docker-compose up
+
+## 📦 Variáveis de Ambiente
+
+Crie um arquivo `.env.local` com:
+
+```env
+NEXT_PUBLIC_API_BASE_URL=http://localhost:3000
+
+## 🔁 Pipeline de CI
+
+CI rodando com:
+
+- **Lint**: `pnpm run lint`
+- **Testes**: `pnpm run test`
+- **Build**: `pnpm run build`
+
+Arquivo do workflow: `.github/workflows/ci.yml`
+
+---
+
+## 🚀 Como Rodar Localmente
+
+```bash
+pnpm install
 pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🧠 Observações
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Autenticação baseada em **JWE**
+- Dashboard com **gráfico diário/mensal de logins**
+- Decrypt de tokens **JWE** via endpoint com feedback visual
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 👨‍💻 Autor
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Gabriel Passaes** — [@gabriel-passaes](https://github.com/gabriel-passaes)

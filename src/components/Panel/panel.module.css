@@ -1,0 +1,11 @@
+.panel {
+  @apply rounded-md overflow-hidden shadow-sm border;
+}
+
+.header {
+  @apply px-4 py-3 border-b font-semibold;
+}
+
+.content {
+  @apply p-3 pt-4;
+}

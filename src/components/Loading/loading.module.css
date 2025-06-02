@@ -1,0 +1,23 @@
+.spinnerStroke {
+  animation: spinner-stroke 3s linear infinite;
+  transform-origin: center;
+}
+
+.lineFill {
+  animation: line-progress 2s ease-in-out infinite;
+}
+
+@keyframes spinner-stroke {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes line-progress {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

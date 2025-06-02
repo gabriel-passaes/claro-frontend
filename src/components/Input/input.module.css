@@ -1,0 +1,19 @@
+.inputBase {
+  @apply w-full rounded-md border outline-none transition-all px-3 py-2 placeholder:text-sm;
+}
+
+.inputSmall {
+  @apply h-8 text-sm;
+}
+
+.inputMedium {
+  @apply h-10 text-base;
+}
+
+.inputLarge {
+  @apply h-12 text-lg;
+}
+
+.labelBase {
+  @apply block text-sm font-medium mb-1;
+}

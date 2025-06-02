@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-light-100 text-dark-100 dark:bg-dark-100 dark:text-light-100 transition-colors duration-300 antialiased;
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+*:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}

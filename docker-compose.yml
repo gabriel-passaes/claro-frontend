@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  claro-frontend:
+    build:
+      context: .
+    container_name: claro-frontend
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+    volumes:
+      - .:/app:cached
+      - /app/node_modules
+    command: ["pnpm", "dev", "-p", "3001"]
