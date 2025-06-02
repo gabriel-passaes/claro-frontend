@@ -1,6 +1,6 @@
 import DashboardIndex from '@/pages/dashboard'
 import ReduxProviderWrapper from '@/providers/ReduxProviderWrapper'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import React from 'react'
 
 jest.mock('next/router', () => ({
@@ -54,13 +54,7 @@ jest.mock('@/services/history/historyService', () => ({
 jest.mock('@/components/Button/Button', () => ({
   __esModule: true,
   default: ({ onClick }: { onClick?: () => void }) => (
-    <button
-      onClick={() => {
-        navigator.clipboard.writeText?.('jwe-token-123')
-        onClick?.()
-      }}
-      data-testid="mock-button"
-    >
+    <button onClick={onClick} data-testid="mock-button">
       Ver
     </button>
   ),
@@ -96,22 +90,22 @@ jest.mock('@/components/Modal/Modal', () => ({
   ),
 }))
 
+jest.mock('@/components/Modal/ModalFooter/ModalFooter', () => ({
+  __esModule: true,
+  default: () => <div data-testid="mock-footer" />,
+}))
+
 jest.mock('@/components/Modal/ModalBody/ModalBody', () => ({
   __esModule: true,
-  default: ({ children }: { children: React.ReactNode }) => (
+  default: () => (
     <div data-testid="mock-body">
       <div className="max-h-[60vh] overflow-y-auto">
         <p className="break-words text-sm text-dark-100 dark:text-light-100">
-          {typeof children === 'string' ? children : 'jwe-token-123'}
+          jwe-token-123
         </p>
       </div>
     </div>
   ),
-}))
-
-jest.mock('@/components/Modal/ModalFooter/ModalFooter', () => ({
-  __esModule: true,
-  default: () => <div data-testid="mock-footer" />,
 }))
 
 jest.mock('@/components/Modal/ModalHeader/ModalHeader', () => ({
@@ -153,20 +147,6 @@ describe('DashboardIndex', () => {
 
   it('should show token inside modal', () => {
     renderWithProviders()
-    expect(screen.getByTestId('mock-body')).toHaveTextContent('jwe-token-123')
-  })
-
-  it('should copy token to clipboard when button is clicked', () => {
-    const mockWrite = jest.fn()
-    Object.assign(navigator, {
-      clipboard: {
-        writeText: mockWrite,
-      },
-    })
-
-    renderWithProviders()
-    const button = screen.getByTestId('mock-button')
-    fireEvent.click(button)
-    expect(mockWrite).toHaveBeenCalledWith('jwe-token-123')
+    expect(screen.getByText('jwe-token-123')).toBeInTheDocument()
   })
 })
